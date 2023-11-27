@@ -7,14 +7,9 @@ import {
     TileLayer,
     VectorLayer,
     TopoJSON,
-    Fill,
-    Stroke,
-    Style,
 } from "./deps/ol.ts"
 
 const source = new VectorSource({wrapX: false})
-
-console.log(Fill, Stroke, Style)
 
 new Map({
     target: "map",
