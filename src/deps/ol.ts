@@ -1,5 +1,7 @@
 export * from "https://esm.sh/v135/ol@8.2.0?target=es2022"
 export * from "https://esm.sh/v135/ol@8.2.0/interaction?target=es2022"
+export * from "https://esm.sh/v135/ol@8.2.0/format?target=es2022"
+export * from "https://esm.sh/v135/ol@8.2.0/style?target=es2022"
 
 export {
     OSM,

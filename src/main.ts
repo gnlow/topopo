@@ -6,15 +6,35 @@ import {
     VectorSource,
     TileLayer,
     VectorLayer,
+    TopoJSON,
+    Fill,
+    Stroke,
+    Style,
 } from "./deps/ol.ts"
 
 const source = new VectorSource({wrapX: false})
+
+console.log(Fill, Stroke, Style)
 
 new Map({
     target: "map",
     layers: [
         new TileLayer({
             source: new OSM()
+        }),
+        new VectorLayer({
+            source: new VectorSource({
+                url: "https://openlayers.org/en/latest/examples/data/topojson/world-110m.json",
+                format: new TopoJSON({
+                    layers: ["countries"],
+                }),
+                overlaps: false,
+            }),
+            style: {
+                "fill-color": "rgba(100, 100, 200, 0.6)",
+                "stroke-color": "#319FD3",
+                "stroke-width": 1,
+            },
         }),
         new VectorLayer({
             source,
