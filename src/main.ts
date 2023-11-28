@@ -12,7 +12,8 @@ import {
 
 import { topology } from "./layers/topology.ts"
 
-import { split } from "./split.ts"
+import { split } from "./interactions/split.ts"
+import { snap } from "./interactions/snap.ts"
 
 const source = new VectorSource({wrapX: false})
 
@@ -33,9 +34,7 @@ new Map({
     }),
     interactions: [
         split(source),
-        new Snap({
-            source: topology.getSource()!
-        })
+        snap(topology.getSource()!),
     ]
 })
 

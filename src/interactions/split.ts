@@ -4,11 +4,10 @@ import {
     type Geometry,
     type VectorSource,
     type BaseEvent,
-    GeoJSON,
     LineString,
-} from "./deps/ol.ts"
+} from "../deps/ol.ts"
 
-import { assert } from "./util/assert.ts"
+import { assert } from "../util/assert.ts"
 
 export const split =
 (source: VectorSource<Feature<Geometry>>) => {
