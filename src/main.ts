@@ -9,6 +9,8 @@ import {
     TopoJSON,
 } from "./deps/ol.ts"
 
+import { split } from "./split.ts"
+
 const source = new VectorSource({wrapX: false})
 
 new Map({
@@ -40,10 +42,7 @@ new Map({
         zoom: 4,
     }),
     interactions: [
-        new Draw({
-            source,
-            type: "LineString",
-        })
+        split(source),
     ]
 })
 
