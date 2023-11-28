@@ -17,6 +17,10 @@ import { snap } from "./interactions/snap.ts"
 
 const source = new VectorSource({wrapX: false})
 
+const lineLayer = new VectorLayer({
+    source,
+})
+
 new Map({
     target: "map",
     layers: [
@@ -24,9 +28,7 @@ new Map({
             source: new OSM()
         }),
         topology,
-        new VectorLayer({
-            source,
-        })
+        lineLayer,
     ],
     view: new View({
         center: [-11000000, 4600000],
@@ -35,6 +37,7 @@ new Map({
     interactions: [
         split(source),
         snap(topology.getSource()!),
+        snap(lineLayer.getSource()!),
     ]
 })
 
