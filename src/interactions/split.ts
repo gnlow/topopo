@@ -2,15 +2,21 @@ import {
     Draw,
     Feature,
     type Geometry,
-    type VectorSource,
+    VectorSource,
     type BaseEvent,
     LineString,
+    Map,
+    VectorLayer,
 } from "../deps/ol.ts"
 
 import { assert } from "../util/assert.ts"
 
-export const split =
-(source: VectorSource<Feature<Geometry>>) => {
+export const useSplit = (map: Map) => {
+    const source = new VectorSource({wrapX: false})
+    const lineLayer = new VectorLayer({
+        source,
+    })
+    
     const draw = new Draw({
         source,
         type: "LineString",
@@ -20,7 +26,11 @@ export const split =
         assert(geometry)
         geometry.on("change", onGeomChange)
     })
-    return draw
+
+    map.addLayer(lineLayer)
+    map.addInteraction(draw)
+
+    return lineLayer
 }
 
 const onGeomChange = (e: BaseEvent) => {

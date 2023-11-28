@@ -12,32 +12,31 @@ import {
 
 import { topology } from "./layers/topology.ts"
 
-import { split } from "./interactions/split.ts"
-import { snap } from "./interactions/snap.ts"
+import { useSplit } from "./interactions/split.ts"
+import { useSnap } from "./interactions/snap.ts"
 
-const source = new VectorSource({wrapX: false})
-
-const lineLayer = new VectorLayer({
-    source,
-})
-
-new Map({
+const map = new Map({
     target: "map",
     layers: [
         new TileLayer({
             source: new OSM()
         }),
         topology,
-        lineLayer,
     ],
     view: new View({
         center: [-11000000, 4600000],
         zoom: 4,
     }),
-    interactions: [
-        split(source),
-        snap(topology.getSource()!),
-        snap(lineLayer.getSource()!),
-    ]
 })
 
+const lineLayer = useSplit(map)
+useSnap(topology.getSource()!)
+useSnap(lineLayer.getSource()!)
+
+map.on("pointermove", e => {
+    map.forEachFeatureAtPixel(e.pixel, (feature, layer) => {
+        if (layer) {
+            console.log(feature.getProperties())
+        }
+    })
+})
