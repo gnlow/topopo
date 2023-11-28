@@ -7,7 +7,10 @@ import {
     TileLayer,
     VectorLayer,
     TopoJSON,
+    Snap,
 } from "./deps/ol.ts"
+
+import { topology } from "./layers/topology.ts"
 
 import { split } from "./split.ts"
 
@@ -19,20 +22,7 @@ new Map({
         new TileLayer({
             source: new OSM()
         }),
-        new VectorLayer({
-            source: new VectorSource({
-                url: "https://openlayers.org/en/latest/examples/data/topojson/world-110m.json",
-                format: new TopoJSON({
-                    layers: ["countries"],
-                }),
-                overlaps: false,
-            }),
-            style: {
-                "fill-color": "rgba(100, 100, 200, 0.6)",
-                "stroke-color": "#319FD3",
-                "stroke-width": 1,
-            },
-        }),
+        topology,
         new VectorLayer({
             source,
         })
@@ -43,6 +33,9 @@ new Map({
     }),
     interactions: [
         split(source),
+        new Snap({
+            source: topology.getSource()!
+        })
     ]
 })
 
