@@ -10,7 +10,7 @@ export const snap =
         console.log(
             "snap:",
             e.feature.getGeometry()?.getType(),
-            e.feature.getId(),
+            (e.feature as any).ol_uid,
         )
     })
     return interaction
