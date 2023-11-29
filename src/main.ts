@@ -14,6 +14,8 @@ import {
     GeoJSON,
     defaultInteractions,
     DragRotateAndZoom,
+    Style,
+    Stroke,
 } from "./deps/ol.ts"
 
 import { topology } from "./layers/topology.ts"
@@ -24,7 +26,7 @@ import { snap } from "./interactions/snap.ts"
 
 import { merge, mesh } from "./deps/topojson-client.ts"
 
-const topo = await fetch("https://openlayers.org/en/latest/examples/data/topojson/world-110m.json").then(x => x.json())
+const topo = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-10m.json").then(x => x.json())
 
 console.log(
     mesh(topo)
@@ -32,18 +34,32 @@ console.log(
 
 
 const format = new GeoJSON()
-const topoMesh = format.readGeometry(mesh(topo))
+const topoMesh = format.readGeometry(mesh(topo)) as MultiLineString
+
+console.log(topoMesh.getLineStrings())
+
+const lineStrings = topoMesh.getLineStrings()
+    .map(x => new Feature({
+        geometry: x,
+        color: `rgb(
+            ${Math.random() * 256}
+            ${Math.random() * 256}
+            ${Math.random() * 256}
+        )`,
+    }))
 
 const mul = new VectorLayer({
     source: new VectorSource({
-        features: [
-            new Feature({
-                geometry: topoMesh,
-            })
-        ]
+        features: lineStrings
     }),
-    style: {
-        "stroke-width": 3
+    style: feature => {
+        return new Style({
+            stroke: new Stroke({
+                width: 3,
+                color: feature.get("color"),
+                
+            })
+        })
     }
 })
 
@@ -52,6 +68,9 @@ const source = new VectorSource({wrapX: false})
 
 const lineLayer = new VectorLayer({
     source,
+    style: {
+        "stroke-width": 3
+    }
 })
 
 const map = new Map({
