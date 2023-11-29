@@ -1,14 +1,13 @@
-import { Feature, Geometry, Snap, VectorSource, Map } from "../deps/ol.ts"
+import { Feature, Geometry, Snap, VectorSource } from "../deps/ol.ts"
 
-export const useSnap =
-(source: VectorSource<Feature<Geometry>>) =>
-(map: Map) => {
+export const snap =
+(source: VectorSource<Feature<Geometry>>) => {
     const interaction = new Snap({
         source,
     })
     interaction.on("snap", e => {
         const v = e.target as Geometry
-        console.log((e.feature as any).ol_uid, e.target.ol_uid)
+        console.log(e.feature.ol_uid, e.target.ol_uid)
     })
-    map.addInteraction(interaction)
+    return interaction
 }
