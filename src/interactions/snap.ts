@@ -7,7 +7,11 @@ export const snap =
     })
     interaction.on("snap", e => {
         const v = e.target as Geometry
-        console.log(e.feature.ol_uid, e.target.ol_uid)
+        console.log(
+            "snap:",
+            e.feature.getGeometry()?.getType(),
+            e.feature.getId(),
+        )
     })
     return interaction
 }

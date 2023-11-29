@@ -25,5 +25,5 @@ export const split =
 
 const onGeomChange = (e: BaseEvent) => {
     const lineString = e.target as LineString
-    console.log(lineString.getCoordinates())
+    // console.log(lineString.getCoordinates())
 }

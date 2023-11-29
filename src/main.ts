@@ -21,7 +21,7 @@ const lineLayer = new VectorLayer({
     source,
 })
 
-new Map({
+const map = new Map({
     target: "map",
     layers: [
         new TileLayer({
@@ -41,3 +41,14 @@ new Map({
     ]
 })
 
+map.on("click", e => {
+    map.forEachFeatureAtPixel(e.pixel, feature => {
+        const type = feature.getGeometry()?.getType()
+        if (type?.endsWith("Polygon"))
+        console.log(
+            "click:",
+            feature.getGeometry()?.getType(),
+            feature.getId(),
+        )
+    })
+})
