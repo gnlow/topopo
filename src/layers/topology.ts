@@ -8,23 +8,23 @@ import {
     Text,
     CircleStyle,
 } from "../deps/ol.ts"
-import { randColor } from "../util/randColor.ts"
+import { hashColor, randColor } from "../util/color.ts"
 
 export const topology = new VectorLayer({
     source: new VectorSource({
         url: "https://openlayers.org/en/latest/examples/data/topojson/world-110m.json",
         format: new TopoJSON({
-            layers: ["land"],
+            layers: ["countries"],
         }),
         overlaps: false,
     }),
     style: feature => new Style({
         fill: new Fill({
-            color: "transparent",
+            color: hashColor((feature as any).ol_uid),
         }),
         stroke: new Stroke({
             width: 3,
-            color: randColor(),
+            color: "black",
         }),
         image: new CircleStyle({
             stroke: new Stroke({
