@@ -4,7 +4,12 @@ export { defaults as defaultInteractions } from "https://esm.sh/v135/ol@8.2.0/in
 export * from "https://esm.sh/v135/ol@8.2.0/format?target=es2022"
 export * from "https://esm.sh/v135/ol@8.2.0/format/GeoJSON?target=es2022"
 export * from "https://esm.sh/v135/ol@8.2.0/geom?target=es2022"
-export * from "https://esm.sh/v135/ol@8.2.0/style?target=es2022"
+export {
+    Style,
+    Fill,
+    Stroke,
+    Circle as CircleStyle,
+} from "https://esm.sh/v135/ol@8.2.0/style?target=es2022"
 export { default as BaseEvent } from "https://esm.sh/v135/ol@8.2.0/events/Event.js?target=es2022"
 
 export {
