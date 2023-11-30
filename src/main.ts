@@ -16,6 +16,7 @@ import {
     DragRotateAndZoom,
     Style,
     Stroke,
+    Modify,
 } from "./deps/ol.ts"
 
 import { topology } from "./layers/topology.ts"
@@ -87,6 +88,7 @@ const map = new Map({
     }),
     interactions: defaultInteractions().extend([
         new DragRotateAndZoom(),
+        new Modify({source}),
         split(source),
         snap(topology.getSource()!),
         snap(lineLayer.getSource()!),

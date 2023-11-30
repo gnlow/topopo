@@ -1,4 +1,4 @@
-import {
+import type {
     GeoJsonProperties,
     FeatureCollection,
 } from "https://esm.sh/v135/geojson@0.5.0"
