@@ -68,9 +68,6 @@ const source = new VectorSource({wrapX: false})
 
 const lineLayer = new VectorLayer({
     source,
-    style: {
-        "stroke-width": 3
-    }
 })
 
 const map = new Map({
@@ -79,8 +76,8 @@ const map = new Map({
         new TileLayer({
             source: new OSM()
         }),
-        //topology,
-        mul,
+        topology,
+        //mul,
         lineLayer,
     ],
     view: new View({
@@ -91,7 +88,7 @@ const map = new Map({
     interactions: defaultInteractions().extend([
         new DragRotateAndZoom(),
         split(source),
-        snap(mul.getSource()!),
+        snap(topology.getSource()!),
         snap(lineLayer.getSource()!),
     ])
 })

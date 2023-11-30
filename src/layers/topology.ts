@@ -8,7 +8,7 @@ export const topology = new VectorLayer({
     source: new VectorSource({
         url: "https://openlayers.org/en/latest/examples/data/topojson/world-110m.json",
         format: new TopoJSON({
-            layers: ["countries"],
+            layers: ["land"],
         }),
         overlaps: false,
     }),
