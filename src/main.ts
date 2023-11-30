@@ -65,11 +65,9 @@ const mul = new VectorLayer({
 })
 
 
-const source = new VectorSource({wrapX: false})
+const source = topology.getSource()!
 
-const lineLayer = new VectorLayer({
-    source,
-})
+const lineLayer = topology
 
 const map = new Map({
     target: "map",
@@ -77,7 +75,7 @@ const map = new Map({
         new TileLayer({
             source: new OSM()
         }),
-        topology,
+        //topology,
         //mul,
         lineLayer,
     ],

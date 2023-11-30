@@ -32,13 +32,13 @@ export const split =
         const format = new GeoJSON()
         const geometry = e.feature.getGeometry()!
         const type = geometry.getType()
-        if (type == "LineString" || type == "Polygon") {
+        if (true) {
             const geojson1 = format.writeFeaturesObject([e.feature]) as FeatureCollection<LineString, GeoJsonProperties>
             const extent = geometry.getExtent()
             source.forEachFeatureIntersectingExtent(extent, feature => {
                 const geometry = feature.getGeometry()!
                 const type = geometry.getType()
-                if (type == "LineString" || type == "Polygon") {
+                if (true) {
                     const geojson2 = format.writeFeaturesObject([feature]) as FeatureCollection<LineString, GeoJsonProperties>
                     const intersects = turf.lineIntersect(geojson1, geojson2)
                     const points = format.readFeatures(intersects) as Feature<Point>[]

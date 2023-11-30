@@ -14,7 +14,8 @@ export const topology = new VectorLayer({
     }),
     style: {
         "fill-color": "rgba(100, 100, 200, 0.6)",
-        "stroke-color": "#319FD3",
-        "stroke-width": 1,
+        "stroke-width": 3,
+        "circle-stroke-width": 3,
+        "circle-radius": 5,
     },
 })
