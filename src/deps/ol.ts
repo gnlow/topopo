@@ -8,6 +8,7 @@ export {
     Style,
     Fill,
     Stroke,
+    Text,
     Circle as CircleStyle,
 } from "https://esm.sh/v135/ol@8.2.0/style?target=es2022"
 export { default as BaseEvent } from "https://esm.sh/v135/ol@8.2.0/events/Event.js?target=es2022"

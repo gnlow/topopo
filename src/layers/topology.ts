@@ -5,6 +5,7 @@ import {
     Fill,
     Style,
     Stroke,
+    Text,
     CircleStyle,
 } from "../deps/ol.ts"
 import { randColor } from "../util/randColor.ts"
@@ -30,6 +31,14 @@ export const topology = new VectorLayer({
                 width: 3,
             }),
             radius: 5,
+        }),
+        text: new Text({
+            text: (feature.getGeometry()!.getType()) + (feature as any).ol_uid,
+            stroke: new Stroke({
+                color: "white",
+                width: 10,
+            }),
+            font: "15px",
         })
     })
 })
